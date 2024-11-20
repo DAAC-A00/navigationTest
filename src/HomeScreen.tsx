@@ -1,6 +1,6 @@
 // src/HomeScreen.tsx
 
-import React from 'react'; // React 라이브러리를 가져옵니다. React는 사용자 인터페이스를 만들기 위해 사용됩니다.
+import React from 'react'; // React 라이브러리를 가져옵니다.
 import { View, Text, Button } from 'react-native'; // React Native에서 사용할 UI 컴포넌트를 가져옵니다.
 import { StackNavigationProp } from '@react-navigation/stack'; // 스택 내비게이션에서 사용할 타입을 가져옵니다.
 import { RootStackParamList } from './App'; // 앱에서 정의한 매개변수 타입을 가져옵니다.
