@@ -3,7 +3,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from './App'; // RootStackParamList를 임포트
 
 type DetailsScreenProps = {
