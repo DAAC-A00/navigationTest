@@ -3,24 +3,18 @@
 import 'react-native-gesture-handler'; // react-native-gesture-handler 라이브러리를 임포트하여 제스처 핸들링 기능을 사용 가능하게 함
 import * as React from 'react'; // React 라이브러리를 임포트
 import { NavigationContainer } from '@react-navigation/native'; // 네비게이션 컨테이너를 임포트하여 앱의 네비게이션 구조를 정의
-import { createDrawerNavigator, DrawerNavigationProp } from '@react-navigation/drawer'; // Drawer 네비게이터와 관련된 타입을 임포트
-import { View, Text, Button } from 'react-native'; // React Native의 기본 컴포넌트인 View, Text, Button을 임포트
-import { RouteProp } from '@react-navigation/native'; // 라우트 속성을 정의하기 위해 RouteProp을 임포트
+import { createDrawerNavigator } from '@react-navigation/drawer'; // Drawer 네비게이터를 임포트
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'; // Tab 네비게이터를 임포트
+import { View, Text } from 'react-native'; // React Native의 기본 컴포넌트인 View, Text를 임포트
 
-const Drawer = createDrawerNavigator(); // Drawer 네비게이터를 생성하여 Drawer 상수에 할당
-
-// HomeScreenProps 타입 정의: navigation과 route 속성을 포함
-type HomeScreenProps = {
-  navigation: DrawerNavigationProp<any>; // Drawer 네비게이터의 navigation 속성 타입 정의
-  route: RouteProp<any>; // 라우트 속성 타입 정의
-};
+const Drawer = createDrawerNavigator(); // Drawer 네비게이터 생성
+const Tab = createBottomTabNavigator(); // Tab 네비게이터 생성
 
 // 홈 화면 컴포넌트 정의
-function HomeScreen({ navigation }: HomeScreenProps) {
+function HomeScreen() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>홈 화면</Text>
-      <Button title="드로어 열기" onPress={() => navigation.openDrawer()} />
     </View>
   );
 }
@@ -34,13 +28,42 @@ function SettingsScreen() {
   );
 }
 
+// 프로필 화면 컴포넌트 정의
+function ProfileScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>프로필 화면</Text>
+    </View>
+  );
+}
+
+// 정보 화면 컴포넌트 정의
+function InfoScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>정보 화면</Text>
+    </View>
+  );
+}
+
+// 탭 네비게이터 정의
+function TabNavigator() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="홈" component={HomeScreen} />
+      <Tab.Screen name="설정" component={SettingsScreen} />
+      <Tab.Screen name="프로필" component={ProfileScreen} />
+    </Tab.Navigator>
+  );
+}
+
 // 앱 컴포넌트 정의
 export default function App() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="홈">
-        <Drawer.Screen name="홈" component={HomeScreen} />
-        <Drawer.Screen name="설정" component={SettingsScreen} />
+      <Drawer.Navigator initialRouteName="탭">
+        <Drawer.Screen name="탭" component={TabNavigator} />
+        <Drawer.Screen name="정보" component={InfoScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
