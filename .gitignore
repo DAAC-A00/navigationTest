@@ -1,0 +1,7 @@
+# Ignore build files
+android/app/build/
+node_modules/
+
+# Ignore mipmap resources
+android/app/src/main/res/mipmap-*/
+
