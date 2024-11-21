@@ -3,8 +3,8 @@
 import React from 'react'; // React 라이브러리를 가져옵니다.
 import { NavigationContainer } from '@react-navigation/native'; // 내비게이션을 위한 컨테이너를 가져옵니다.
 import { createStackNavigator } from '@react-navigation/stack'; // 스택 내비게이션을 만들기 위한 함수를 가져옵니다.
-import HomeScreen from './HomeScreen';
-import DetailsScreen from './DetailsScreen';
+import HomeScreen from './HomeScreen'; // HomeScreen 컴포넌트를 가져옵니다.
+import DetailsScreen from './DetailsScreen'; // DetailsScreen 컴포넌트를 가져옵니다.
 
 export type RootStackParamList = { // 앱에서 사용할 화면과 매개변수를 정의하는 타입입니다.
   Home: undefined; // Home 화면은 매개변수를 받지 않습니다.

@@ -1,7 +1,7 @@
 // src/HomeScreen.tsx
 
 import React from 'react'; // React 라이브러리를 가져옵니다.
-import { View, Text, Button } from 'react-native'; // React Native에서 사용할 UI 컴포넌트를 가져옵니다.
+import { View, Text, Button, TouchableOpacity, StyleSheet } from 'react-native'; // React Native에서 사용할 UI 컴포넌트를 가져옵니다.
 import { StackNavigationProp } from '@react-navigation/stack'; // 스택 내비게이션에서 사용할 타입을 가져옵니다.
 import { RootStackParamList } from './App'; // 앱에서 정의한 매개변수 타입을 가져옵니다.
 import { atom, useAtom } from 'jotai'; // Jotai의 atom과 useAtom을 가져옵니다.
@@ -21,11 +21,37 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => { // HomeScree
   };
 
   return ( // 컴포넌트가 반환할 JSX를 시작합니다.
-    <View>
-      <Text>홈 화면</Text>
-      <Button title="상세 화면으로 이동" onPress={navigateToDetails} />
+    <View style={styles.container}>
+      <Text style={styles.text}>홈 화면</Text>
+      <TouchableOpacity style={styles.button} onPress={navigateToDetails}>
+        <Text style={styles.buttonText}>상세 화면으로 이동</Text>
+      </TouchableOpacity>
     </View> // View 컴포넌트의 끝입니다.
   ); // JSX 반환의 끝입니다.
 };
+
+const styles = StyleSheet.create({ // 스타일을 정의합니다.
+  container: { // 전체 컨테이너 스타일
+    flex: 1,
+    justifyContent: 'center', // 수직 가운데 정렬
+    alignItems: 'center', // 수평 가운데 정렬
+  },
+  text: { // 텍스트 스타일
+    fontSize: 24,
+    marginBottom: 20, // 버튼과의 간격
+  },
+  button: { // 버튼 스타일
+    position: 'absolute',
+    bottom: 30, // 화면 하단에서 30px 위
+    backgroundColor: '#007BFF', // 버튼 배경 색상
+    padding: 10, // 버튼 패딩
+    borderRadius: 5, // 버튼 모서리 둥글기
+  },
+  buttonText: { // 버튼 텍스트 스타일
+    color: 'white', // 텍스트 색상
+    fontSize: 18, // 텍스트 크기
+    textAlign: 'center', // 텍스트 중앙 정렬
+  },
+});
 
 export default HomeScreen; // HomeScreen 컴포넌트를 다른 파일에서 사용할 수 있도록 내보냅니다.
