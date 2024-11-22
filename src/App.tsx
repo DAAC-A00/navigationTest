@@ -2,52 +2,53 @@
 
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
-const HomeScreen: React.FC = () => {
+const Tab = createBottomTabNavigator();
+
+const HomeScreen = () => {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>홈 화면</Text>
     </View>
   );
 };
 
-const ProfileScreen: React.FC = () => {
+const SettingsScreen = () => {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>프로필 화면</Text>
-    </View>
-  );
-};
-
-const SettingScreen: React.FC = () => {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>설정 화면</Text>
     </View>
   );
 };
 
-const DetailScreen: React.FC = () => {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>상세 화면</Text>
-    </View>
-  );
-};
-
-const Drawer = createDrawerNavigator();
-
-const App: React.FC = () => {
+const App = () => {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="Profile" component={ProfileScreen} />
-        <Drawer.Screen name="Setting" component={SettingScreen} />
-        <Drawer.Screen name="Detail" component={DetailScreen} />
-      </Drawer.Navigator>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName: string;
+
+            if (route.name === '홈') {
+              iconName = focused ? 'home' : 'home-outline';
+            } else if (route.name === '설정') {
+              iconName = focused ? 'settings' : 'settings-outline';
+            } else {
+              iconName = 'help-outline'; // 기본 아이콘 설정
+            }
+
+            return <Icon name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: 'tomato',
+          tabBarInactiveTintColor: 'gray',
+        })}
+      >
+        <Tab.Screen name="홈" component={HomeScreen} />
+        <Tab.Screen name="설정" component={SettingsScreen} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 };
